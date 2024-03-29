@@ -33,4 +33,4 @@ THEN I am again presented with current and future conditions for that city
 
 ## Mock-Up EXAMPLE
 
-![alt text](image.png)
+![alt text](./assets/img/EXAMPLE.png)
