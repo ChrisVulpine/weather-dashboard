@@ -4,3 +4,9 @@ h1 {
     display: flex; 
     justify-content: center;
 }
+
+.flexContainer {
+    display: flex; 
+    justify-content: flex-start;
+    
+}

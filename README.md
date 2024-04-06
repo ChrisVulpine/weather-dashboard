@@ -2,11 +2,11 @@
 
 ## TO DO
 ✅ Get API Key
-* Construct API query URL ref: https://openweathermap.org/forecast5 <br> 
+✅ Construct API query URL ref: https://openweathermap.org/forecast5 <br> 
 * Use local storage to store persistent data ref: https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
-* Add a form input
+✅ Add a form input
 * Search bar for city
-* Include city name, the date, icon of weather, temp, humidity, and wind speed
+✅ Include city name, the date, icon of weather, temp, humidity, and wind speed
 * view future weather 
 * 5-day forecast displaying: date, icon of weather, temp, wind speed, adn humidity 
 * Include search history that shows data already searched 
