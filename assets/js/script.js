@@ -5,6 +5,7 @@ let city;
 var resultTempEl = document.querySelector('#searchTemp');
 var searchFormEl = document.querySelector('#search-form');
 var currentWeather = document.querySelector('#currentWeather');
+var lastSearchedCity = '';
 
 
 var queryString;
@@ -18,6 +19,7 @@ dayjs.extend(window.dayjs_plugin_timezone);
 
 //---------------------------------Get Today's Weather Function-----------------------------------------//
 
+// Load local storage function //
 
 function getTodayWeather(event) {
   event.preventDefault();
@@ -28,8 +30,18 @@ function getTodayWeather(event) {
     console.error('You need a search input value!');
     return;
   }
+  if ( lastSearchedCity.toLowerCase() === searchInputVal.toLowerCase()) {
+    return;
+  
+  }
 
+//Call the save to local storage function here //
+
+
+
+  lastSearchedCity = searchInputVal
   var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + searchInputVal + `&appid=${APIKey}&units=imperial`;
+
 
 
   fetch(queryString)
@@ -66,7 +78,7 @@ function getTodayWeather(event) {
     console.log(`lon: ${lon}`);
     console.log(`---------------`);
     console.log(forecastURL);
-    
+    currentWeather.textContent = '';
 
     var cityNameEl = document.createElement('h1');
     var weatherIconEl = document.createElement('img');
@@ -98,6 +110,8 @@ function getTodayWeather(event) {
 
 }
 
+// Store to local storage //
+
 //---------------------------------5 Day Forecast Function-----------------------------------------//
 
 function forecast(lat, lon) {
@@ -114,25 +128,26 @@ function forecast(lat, lon) {
  
     console.log(data);
 
-    var date = data.list[0].dt_txt;
-    console.log(date);
+    var day1 = data.list[0].main.temp;
 
-    var dateEl = document.createElement('h2');
+    
+    console.log(day1);
 
-    dateEl.textContent = `${date}`;
+    var day1El = document.createElement('h2');
 
-    document.body.appendChild(dateEl);
+    day1El.textContent = `${day1}`;
 
-      // Create unix timestamps for start and end of 5 day forecast
-  var startForecast = dayjs().add(1, 'day').startOf('day').unix();
-  var endForecast = dayjs().add(6, 'day').startOf('day').unix();
+    document.body.appendChild(day1El);
 
-  console.log(startForecast);
-  console.log(endForecast);
+    var today = dayjs()
+    var thisweek = today.add(5, 'day').format('M/D/YYYY');
 
-  let dailyForecast = [startForecast, endForecast];
+    console.log(thisweek);
 
-  console.log(dailyForecast);
+
+  
+
+ 
 
   })
   .catch(error => {

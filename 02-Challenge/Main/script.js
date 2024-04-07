@@ -3,6 +3,8 @@ var searchHistory = [];
 var weatherApiRootUrl = 'https://api.openweathermap.org';
 var weatherApiKey = '0dd2ffba4adc8637e4be998473a8021b';
 
+
+
 // DOM element references
 var searchForm = document.querySelector('#search-form');
 var searchInput = document.querySelector('#search-input');
