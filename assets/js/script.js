@@ -4,6 +4,8 @@ let city;
 
 var resultTempEl = document.querySelector('#searchTemp');
 var searchFormEl = document.querySelector('#search-form');
+var currentWeather = document.querySelector('#currentWeather');
+
 
 var queryString;
 
@@ -14,7 +16,7 @@ dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
 
-// //-------------------------------------------------------------------//
+//---------------------------------Get Today's Weather Function-----------------------------------------//
 
 
 function getTodayWeather(event) {
@@ -26,8 +28,6 @@ function getTodayWeather(event) {
     console.error('You need a search input value!');
     return;
   }
-
-  
 
   var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + searchInputVal + `&appid=${APIKey}&units=imperial`;
 
@@ -75,18 +75,20 @@ function getTodayWeather(event) {
     var humidityEl = document.createElement('h2');
   
 
-    cityNameEl.textContent = `${cityName} (${date})`;
+    cityNameEl.textContent = `Current Weather: ${cityName} (${date})`;
     weatherIconEl.src= `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
     tempEl.textContent = `Temp: ${temp} °F`;
     windEl.textContent = `Wind Speed: ${wind} MPH`;
     humidityEl.textContent = `Humidity: ${humidity}%`;
 
-  
-    document.body.appendChild(cityNameEl);
-    document.body.appendChild(weatherIconEl);
-    document.body.appendChild(tempEl);
-    document.body.appendChild(windEl);
-    document.body.appendChild(humidityEl);
+    currentWeather.append(cityNameEl);
+    // document.body.appendChild(cityNameEl);
+    currentWeather.append(weatherIconEl);
+    currentWeather.append(tempEl);
+    currentWeather.append(windEl);
+    currentWeather.appendChild(humidityEl);
+
+
 
     forecast(lat, lon);
   })
@@ -96,6 +98,8 @@ function getTodayWeather(event) {
 
 }
 
+//---------------------------------5 Day Forecast Function-----------------------------------------//
+
 function forecast(lat, lon) {
   var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`
 
@@ -104,26 +108,53 @@ function forecast(lat, lon) {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json(); // Parse the JSON from the response
+    return response.json(); 
   })
   .then(data => {
-    // Do something with the parsed data
+ 
     console.log(data);
 
-    var population = data.city.population;
-    console.log(population);
+    var date = data.list[0].dt_txt;
+    console.log(date);
 
-    var populationEl = document.createElement('h1');
-    populationEl.textContent = `Population: ${population} People`;
-    document.body.appendChild(populationEl);
+    var dateEl = document.createElement('h2');
 
+    dateEl.textContent = `${date}`;
+
+    document.body.appendChild(dateEl);
+
+      // Create unix timestamps for start and end of 5 day forecast
+  var startForecast = dayjs().add(1, 'day').startOf('day').unix();
+  var endForecast = dayjs().add(6, 'day').startOf('day').unix();
+
+  console.log(startForecast);
+  console.log(endForecast);
+
+  let dailyForecast = [startForecast, endForecast];
+
+  console.log(dailyForecast);
 
   })
   .catch(error => {
-    // Handle errors that occur during the fetch operation
+
     console.error('There was a problem with the fetch operation:', error);
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
