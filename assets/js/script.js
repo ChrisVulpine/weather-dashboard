@@ -130,6 +130,7 @@ function forecast(lat, lon) {
 
     console.log(data);
 
+
     var today = dayjs()
 
     // Day 1 //
@@ -250,6 +251,8 @@ function forecast(lat, lon) {
     day5WindEl.textContent = `Wind Speed: ${day5Wind} MPH`;
     day5HumidEl.textContent = `Humidity: ${day5Humid}%`;    
 
+    forecastContainer.textContent = '';
+
     
     // Day 1 //
     forecastContainer.append(day1DateEl);
@@ -284,7 +287,9 @@ function forecast(lat, lon) {
     forecastContainer.append(day5IconEl);
     forecastContainer.append(day5TempEl);
     forecastContainer.append(day5WindEl);
-    forecastContainer.append(day5HumidEl);    
+    forecastContainer.append(day5HumidEl); 
+    
+    
 
   })
   .catch(error => {
