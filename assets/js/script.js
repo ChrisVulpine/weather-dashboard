@@ -5,6 +5,8 @@ let city;
 var resultTempEl = document.querySelector('#searchTemp');
 var searchFormEl = document.querySelector('#search-form');
 var currentWeather = document.querySelector('#currentWeather');
+var forecastContainer = document.querySelector('#fiveDayForecast');
+
 var lastSearchedCity = '';
 
 
@@ -82,9 +84,9 @@ function getTodayWeather(event) {
 
     var cityNameEl = document.createElement('h1');
     var weatherIconEl = document.createElement('img');
-    var tempEl = document.createElement('h2');
-    var windEl = document.createElement('h2');
-    var humidityEl = document.createElement('h2');
+    var tempEl = document.createElement('h3');
+    var windEl = document.createElement('h3');
+    var humidityEl = document.createElement('h3');
   
 
     cityNameEl.textContent = `Current Weather: ${cityName} (${date})`;
@@ -125,29 +127,164 @@ function forecast(lat, lon) {
     return response.json(); 
   })
   .then(data => {
- 
+
     console.log(data);
 
-    var day1 = data.list[0].main.temp;
+    var today = dayjs()
+
+    // Day 1 //
+    var day1Date = today.add(1, 'day').format('M/D/YYYY');
+
+    // Day 2 //
+    var day2Date = today.add(2, 'day').format('M/D/YYYY');
+
+    // Day 3 //
+    var day3Date = today.add(3, 'day').format('M/D/YYYY');
+
+    // Day 4 //
+    var day4Date = today.add(4, 'day').format('M/D/YYYY');
+
+    // Day 5 //
+    var day5Date = today.add(5, 'day').format('M/D/YYYY');
+
+
+    // Day 1 //
+    var day1Icon = data.list[0].weather[0].icon;
+    var day1Temp = data.list[0].main.temp;
+    var day1Wind = data.list[0].wind.speed;
+    var day1Humid = data.list[0].main.humidity; 
+
+    // Day 2 //
+    var day2Icon = data.list[8].weather[0].icon;
+    var day2Temp = data.list[8].main.temp;
+    var day2Wind = data.list[8].wind.speed;
+    var day2Humid = data.list[8].main.humidity; 
+
+    // Day 3 //
+    var day3Icon = data.list[16].weather[0].icon;
+    var day3Temp = data.list[16].main.temp;
+    var day3Wind = data.list[16].wind.speed;
+    var day3Humid = data.list[16].main.humidity; 
+
+    // Day 4 //
+    var day4Icon = data.list[24].weather[0].icon;
+    var day4Temp = data.list[24].main.temp;
+    var day4Wind = data.list[24].wind.speed;
+    var day4Humid = data.list[24].main.humidity; 
+
+    // Day 5 //
+    var day5Icon = data.list[32].weather[0].icon;
+    var day5Temp = data.list[32].main.temp;
+    var day5Wind = data.list[32].wind.speed;
+    var day5Humid = data.list[32].main.humidity;     
+
+
+    // Day 1 //
+    var day1DateEl = document.createElement('h2');
+    var day1IconEl = document.createElement('img');
+    var day1TempEl = document.createElement('h3');
+    var day1WindEl = document.createElement('h3');
+    var day1HumidEl = document.createElement('h3');
+
+    // Day 2 //
+    var day2DateEl = document.createElement('h2');
+    var day2IconEl = document.createElement('img');
+    var day2TempEl = document.createElement('h3');
+    var day2WindEl = document.createElement('h3');
+    var day2HumidEl = document.createElement('h3');
+
+    // Day 3 //
+    var day3DateEl = document.createElement('h2');
+    var day3IconEl = document.createElement('img');
+    var day3TempEl = document.createElement('h3');
+    var day3WindEl = document.createElement('h3');
+    var day3HumidEl = document.createElement('h3');
+
+    // Day 4 //
+    var day4DateEl = document.createElement('h2');
+    var day4IconEl = document.createElement('img');
+    var day4TempEl = document.createElement('h3');
+    var day4WindEl = document.createElement('h3');
+    var day4HumidEl = document.createElement('h3');
+
+    // Day 5 //
+    var day5DateEl = document.createElement('h2');
+    var day5IconEl = document.createElement('img');
+    var day5TempEl = document.createElement('h3');
+    var day5WindEl = document.createElement('h3');
+    var day5HumidEl = document.createElement('h3');    
+
+
+    // Day 1 //
+    day1DateEl.textContent = `${day1Date}`;
+    day1IconEl.src= `https://openweathermap.org/img/wn/${day1Icon}@2x.png`;
+    day1TempEl.textContent = `Temp: ${day1Temp} °F`;
+    day1WindEl.textContent = `Wind Speed: ${day1Wind} MPH`;
+    day1HumidEl.textContent = `Humidity: ${day1Humid}%`;
+
+    // Day 2 //
+    day2DateEl.textContent = `${day2Date}`;
+    day2IconEl.src= `https://openweathermap.org/img/wn/${day2Icon}@2x.png`;
+    day2TempEl.textContent = `Temp: ${day2Temp} °F`;
+    day2WindEl.textContent = `Wind Speed: ${day2Wind} MPH`;
+    day2HumidEl.textContent = `Humidity: ${day2Humid}%`;
+
+    // Day 3 //
+    day3DateEl.textContent = `${day3Date}`;
+    day3IconEl.src= `https://openweathermap.org/img/wn/${day3Icon}@2x.png`;
+    day3TempEl.textContent = `Temp: ${day3Temp} °F`;
+    day3WindEl.textContent = `Wind Speed: ${day3Wind} MPH`;
+    day3HumidEl.textContent = `Humidity: ${day3Humid}%`;
+
+    // Day 4 //
+    day4DateEl.textContent = `${day4Date}`;
+    day4IconEl.src= `https://openweathermap.org/img/wn/${day4Icon}@2x.png`;
+    day4TempEl.textContent = `Temp: ${day4Temp} °F`;
+    day4WindEl.textContent = `Wind Speed: ${day4Wind} MPH`;
+    day4HumidEl.textContent = `Humidity: ${day4Humid}%`;
+
+    // Day 5 //
+    day5DateEl.textContent = `${day5Date}`;
+    day5IconEl.src= `https://openweathermap.org/img/wn/${day5Icon}@2x.png`;
+    day5TempEl.textContent = `Temp: ${day5Temp} °F`;
+    day5WindEl.textContent = `Wind Speed: ${day5Wind} MPH`;
+    day5HumidEl.textContent = `Humidity: ${day5Humid}%`;    
 
     
-    console.log(day1);
+    // Day 1 //
+    forecastContainer.append(day1DateEl);
+    forecastContainer.append(day1IconEl);
+    forecastContainer.append(day1TempEl);
+    forecastContainer.append(day1WindEl);
+    forecastContainer.append(day1HumidEl);
 
-    var day1El = document.createElement('h2');
+    // Day 2 //
+    forecastContainer.append(day2DateEl);
+    forecastContainer.append(day2IconEl);
+    forecastContainer.append(day2TempEl);
+    forecastContainer.append(day2WindEl);
+    forecastContainer.append(day2HumidEl);
 
-    day1El.textContent = `${day1}`;
+    // Day 3 //
+    forecastContainer.append(day3DateEl);
+    forecastContainer.append(day3IconEl);
+    forecastContainer.append(day3TempEl);
+    forecastContainer.append(day3WindEl);
+    forecastContainer.append(day3HumidEl);
 
-    document.body.appendChild(day1El);
+    // Day 4 //
+    forecastContainer.append(day4DateEl);
+    forecastContainer.append(day4IconEl);
+    forecastContainer.append(day4TempEl);
+    forecastContainer.append(day4WindEl);
+    forecastContainer.append(day4HumidEl);
 
-    var today = dayjs()
-    var thisweek = today.add(5, 'day').format('M/D/YYYY');
-
-    console.log(thisweek);
-
-
-  
-
- 
+    // Day 5 //
+    forecastContainer.append(day5DateEl);
+    forecastContainer.append(day5IconEl);
+    forecastContainer.append(day5TempEl);
+    forecastContainer.append(day5WindEl);
+    forecastContainer.append(day5HumidEl);    
 
   })
   .catch(error => {
