@@ -9,6 +9,7 @@ var forecastContainer = document.querySelector('#fiveDayForecast');
 
 var lastSearchedCity = '';
 
+var searchHistory = [];
 
 var queryString;
 
@@ -22,6 +23,25 @@ dayjs.extend(window.dayjs_plugin_timezone);
 //---------------------------------Get Today's Weather Function-----------------------------------------//
 
 // Load local storage function //
+
+function pullInput() {
+  let pastInput = localStorage.getItem('input');
+  console.log(pastInput);
+  var citiesArray = JSON.parse(pastInput);
+  var historyBtnContainer = document.getElementById('button-container');
+  historyBtnContainer.innerHTML = ''
+citiesArray.forEach(city => {
+  var cityButton = document.createElement('button');
+  cityButton.textContent = city; 
+  historyBtnContainer.appendChild(cityButton);
+});
+
+
+
+
+
+
+}
 
 function getTodayWeather(event) {
   event.preventDefault();
@@ -49,10 +69,11 @@ function getTodayWeather(event) {
   fetch(queryString)
   .then(response => {
     if (!response.ok) {
-      throw new Error('NOT OK');
+      throw new Error('City Not Found!'); 
     }
     return response.json();
   })
+  
   .then(data => {
 
     console.log(data);
@@ -102,17 +123,35 @@ function getTodayWeather(event) {
     currentWeather.append(windEl);
     currentWeather.appendChild(humidityEl);
 
-
-
     forecast(lat, lon);
+    pushInput();
   })
   .catch(error => {
     console.error('ERROR OH NO!', error);
   });
 
+
+
 }
 
+
+
 // Store to local storage //
+function pushInput() {
+  var searchInputVal = document.querySelector('#search-input').value;
+  var lowerCaseInputVal = searchInputVal.toLowerCase();
+  if (!searchHistory.includes (lowerCaseInputVal)) {
+      searchHistory.push(lowerCaseInputVal);
+      localStorage.setItem('input', JSON.stringify(searchHistory));
+      console.log(searchHistory);
+    } else {
+      console.log("Already Searched that city!");
+  
+    }
+    pullInput();
+
+}
+
 
 //---------------------------------5 Day Forecast Function-----------------------------------------//
 
@@ -339,27 +378,5 @@ searchFormEl.addEventListener('submit', getTodayWeather)
 
 
 
-
-
-
-
-// //-------------------------------------------------------------------//
-
-
-// fetch(queryString)
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Network response was not ok');
-//     }
-//     return response.json();
-//   })
-//   .then(data => {
-//     console.log('Fetch request successful:', data);
-//   })
-//   .catch(error => {
-//     console.error('There was a problem with the fetch operation:', error);
-//   });
-
-//-------------------------------------------------------------------//
 
 
