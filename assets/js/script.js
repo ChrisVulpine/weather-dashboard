@@ -25,23 +25,37 @@ dayjs.extend(window.dayjs_plugin_timezone);
 // Load local storage function //
 
 function pullInput() {
-  let pastInput = localStorage.getItem('input');
-  console.log(pastInput);
-  var citiesArray = JSON.parse(pastInput);
+  var pastInput = localStorage.getItem('input');
+  if (pastInput) {
+    searchHistory = JSON.parse(pastInput);
+    }
+
+    createHistoryBtns();
+
+};
+
+
+
+function createHistoryBtns() {
   var historyBtnContainer = document.getElementById('button-container');
   historyBtnContainer.innerHTML = ''
-citiesArray.forEach(city => {
+  for (var i = searchHistory.length - 1; i >= 0; i--) {
   var cityButton = document.createElement('button');
-  cityButton.textContent = city; 
+  cityButton.textContent = searchHistory[i];; 
   historyBtnContainer.appendChild(cityButton);
-});
+
+}};
 
 
 
 
 
 
-}
+
+
+
+
+
 
 function getTodayWeather(event) {
   event.preventDefault();
@@ -123,6 +137,7 @@ function getTodayWeather(event) {
     currentWeather.append(windEl);
     currentWeather.appendChild(humidityEl);
 
+    
     forecast(lat, lon);
     pushInput();
   })
@@ -149,6 +164,7 @@ function pushInput() {
   
     }
     pullInput();
+    createHistoryBtns()
 
 }
 
@@ -353,7 +369,7 @@ function forecast(lat, lon) {
 
 
 
-
+pullInput()
 searchFormEl.addEventListener('submit', getTodayWeather)
 
 
