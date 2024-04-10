@@ -6,6 +6,7 @@ var resultTempEl = document.querySelector('#searchTemp');
 var searchFormEl = document.querySelector('#search-form');
 var currentWeather = document.querySelector('#currentWeather');
 var forecastContainer = document.querySelector('#fiveDayForecast');
+var historyBtnContainer = document.getElementById('button-container');
 
 var lastSearchedCity = '';
 
@@ -41,20 +42,11 @@ function createHistoryBtns() {
   historyBtnContainer.innerHTML = ''
   for (var i = searchHistory.length - 1; i >= 0; i--) {
   var cityButton = document.createElement('button');
+  cityButton.setAttribute('data-search', searchHistory[i]);
   cityButton.textContent = searchHistory[i];; 
   historyBtnContainer.appendChild(cityButton);
 
 }};
-
-
-
-
-
-
-
-
-
-
 
 
 function getTodayWeather(event) {
@@ -70,10 +62,6 @@ function getTodayWeather(event) {
     return;
   
   }
-
-//Call the save to local storage function here //
-
-
 
   lastSearchedCity = searchInputVal
   var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + searchInputVal + `&appid=${APIKey}&units=imperial`;
@@ -148,6 +136,7 @@ function getTodayWeather(event) {
 
 
 }
+
 
 
 
@@ -355,7 +344,89 @@ function forecast(lat, lon) {
 
 
 
+function historyBtnClick(event) {
+  console.log('I WORK!');
+  var citybtn = event.target;
+  var search = citybtn.getAttribute('data-search'); 
 
+  console.log(search);
+
+
+  displayHistoryBtn(search);
+}
+
+function displayHistoryBtn(search) {
+  var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + search + `&appid=${APIKey}&units=imperial`;
+
+
+
+  fetch(queryString)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('City Not Found!'); 
+    }
+    return response.json();
+  })
+  
+  .then(data => {
+    currentWeather.textContent = '';
+
+    console.log(data);
+
+    var cityName = data.name
+    var temp = data.main.temp;
+    var wind = data.wind.speed;
+    var humidity = data.main.humidity;
+    var date = dayjs().format('M/D/YYYY');
+    var weatherIcon = data.weather[0].icon;
+    var lat = data.coord.lat;
+    var lon = data.coord.lon;
+
+    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`
+
+
+
+    console.log(`----- ${cityName} -----`);
+    console.log(`Date: ${date}`);
+    console.log(`Icon: ${weatherIcon}`);
+    console.log(`Temperature: ${temp}°F`);
+    console.log(`Wind Speed: ${wind} MPH`);
+    console.log(`Humidity: ${humidity}%`);
+    console.log(`lat: ${lat}`);
+    console.log(`lon: ${lon}`);
+    console.log(`---------------`);
+    console.log(forecastURL);
+
+    
+
+var cityNameEl = document.createElement('h1');
+var weatherIconEl = document.createElement('img');
+var tempEl = document.createElement('h3');
+var windEl = document.createElement('h3');
+var humidityEl = document.createElement('h3');
+
+
+cityNameEl.textContent = `Current Weather: ${cityName} (${date})`;
+weatherIconEl.src= `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
+tempEl.textContent = `Temp: ${temp} °F`;
+windEl.textContent = `Wind Speed: ${wind} MPH`;
+humidityEl.textContent = `Humidity: ${humidity}%`;
+
+currentWeather.append(cityNameEl);
+// document.body.appendChild(cityNameEl);
+currentWeather.append(weatherIconEl);
+currentWeather.append(tempEl);
+currentWeather.append(windEl);
+currentWeather.appendChild(humidityEl);
+
+
+forecast(lat, lon);
+pushInput();
+})
+.catch(error => {
+console.error('ERROR OH NO!', error);
+});
+};
 
 
 
@@ -370,7 +441,8 @@ function forecast(lat, lon) {
 
 
 pullInput()
-searchFormEl.addEventListener('submit', getTodayWeather)
+searchFormEl.addEventListener('submit', getTodayWeather);
+historyBtnContainer.addEventListener('click', historyBtnClick);
 
 
 
