@@ -84,7 +84,7 @@ function getTodayWeather(event) {
     var temp = data.main.temp;
     var wind = data.wind.speed;
     var humidity = data.main.humidity;
-    var date = dayjs().format('M/D/YYYY');
+    var date = dayjs().format('dddd M/D/YYYY');
     var weatherIcon = data.weather[0].icon;
     var lat = data.coord.lat;
     var lon = data.coord.lon;
@@ -179,19 +179,19 @@ function forecast(lat, lon) {
     var today = dayjs()
 
     // Day 1 //
-    var day1Date = today.add(1, 'day').format('M/D/YYYY');
+    var day1Date = today.add(1, 'day').format('dddd M/D/YYYY');
 
     // Day 2 //
-    var day2Date = today.add(2, 'day').format('M/D/YYYY');
+    var day2Date = today.add(2, 'day').format('dddd M/D/YYYY');
 
     // Day 3 //
-    var day3Date = today.add(3, 'day').format('M/D/YYYY');
+    var day3Date = today.add(3, 'day').format('dddd M/D/YYYY');
 
     // Day 4 //
-    var day4Date = today.add(4, 'day').format('M/D/YYYY');
+    var day4Date = today.add(4, 'day').format('dddd M/D/YYYY');
 
     // Day 5 //
-    var day5Date = today.add(5, 'day').format('M/D/YYYY');
+    var day5Date = today.add(5, 'day').format('dddd M/D/YYYY');
 
 
     // Day 1 //
@@ -378,7 +378,7 @@ function displayHistoryBtn(search) {
     var temp = data.main.temp;
     var wind = data.wind.speed;
     var humidity = data.main.humidity;
-    var date = dayjs().format('M/D/YYYY');
+    var date = dayjs().format('dddd M/D/YYYY');
     var weatherIcon = data.weather[0].icon;
     var lat = data.coord.lat;
     var lon = data.coord.lon;
