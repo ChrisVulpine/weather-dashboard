@@ -142,19 +142,20 @@ function getTodayWeather(event) {
 
 // Store to local storage //
 function pushInput() {
-  var searchInputVal = document.querySelector('#search-input').value;
-  var lowerCaseInputVal = searchInputVal.toLowerCase();
-  if (!searchHistory.includes (lowerCaseInputVal)) {
-      searchHistory.push(lowerCaseInputVal);
-      localStorage.setItem('input', JSON.stringify(searchHistory));
-      console.log(searchHistory);
-    } else {
-      console.log("Already Searched that city!");
-  
+  var searchInputVal = document.querySelector('#search-input').value.trim();
+  if (searchInputVal !== '') {
+    var lowerCaseInputVal = searchInputVal.toLowerCase();
+    if (!searchHistory.includes (lowerCaseInputVal)) {
+        searchHistory.push(lowerCaseInputVal);
+        localStorage.setItem('input', JSON.stringify(searchHistory));
+        console.log(searchHistory);
+      } else {
+        console.log("Already Searched that city!");
+    
+      }
+      pullInput();
+      createHistoryBtns();
     }
-    pullInput();
-    createHistoryBtns()
-
 }
 
 
@@ -421,7 +422,6 @@ currentWeather.appendChild(humidityEl);
 
 
 forecast(lat, lon);
-pushInput();
 })
 .catch(error => {
 console.error('ERROR OH NO!', error);
