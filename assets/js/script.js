@@ -2,7 +2,7 @@ const APIKey = '0dd2ffba4adc8637e4be998473a8021b'; //my actual key
 let city;
 // const queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
 
-var resultTempEl = document.querySelector('#searchTemp');
+// var resultTempEl = document.querySelector('#searchTemp');
 var searchFormEl = document.querySelector('#search-form');
 var currentWeather = document.querySelector('#currentWeather');
 var forecastContainer = document.querySelector('#fiveDayForecast');
@@ -16,9 +16,13 @@ var queryString;
 
 var forecastURL; 
 
+var day1Card = document.querySelector('#day1Card');
+
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
+
+
 
 
 //---------------------------------Get Today's Weather Function-----------------------------------------//
@@ -42,7 +46,9 @@ function createHistoryBtns() {
   historyBtnContainer.innerHTML = ''
   for (var i = searchHistory.length - 1; i >= 0; i--) {
   var cityButton = document.createElement('button');
+  
   cityButton.setAttribute('data-search', searchHistory[i]);
+  cityButton.setAttribute('class', 'btn btn-outline-primary');
   cityButton.textContent = searchHistory[i];; 
   historyBtnContainer.appendChild(cityButton);
 
@@ -56,6 +62,11 @@ function getTodayWeather(event) {
 
   if (!searchInputVal) {
     console.error('You need a search input value!');
+    Swal.fire({
+      title: 'You need to input a city!',
+      icon: 'warning',
+      confirmButtonText: `Thanks! I'll try again.`
+    })
     return;
   }
   if ( lastSearchedCity.toLowerCase() === searchInputVal.toLowerCase()) {
@@ -119,7 +130,6 @@ function getTodayWeather(event) {
     humidityEl.textContent = `Humidity: ${humidity}%`;
 
     currentWeather.append(cityNameEl);
-    // document.body.appendChild(cityNameEl);
     currentWeather.append(weatherIconEl);
     currentWeather.append(tempEl);
     currentWeather.append(windEl);
@@ -225,7 +235,10 @@ function forecast(lat, lon) {
     var day5Humid = data.list[32].main.humidity;     
 
 
+
+    var fiveDayForecastTitle = document.createElement('h1');
     // Day 1 //
+
     var day1DateEl = document.createElement('h2');
     var day1IconEl = document.createElement('img');
     var day1TempEl = document.createElement('h3');
@@ -260,7 +273,7 @@ function forecast(lat, lon) {
     var day5WindEl = document.createElement('h3');
     var day5HumidEl = document.createElement('h3');    
 
-
+    fiveDayForecastTitle.textContent = `Five Day Forecast:`
     // Day 1 //
     day1DateEl.textContent = `${day1Date}`;
     day1IconEl.src= `https://openweathermap.org/img/wn/${day1Icon}@2x.png`;
@@ -298,7 +311,7 @@ function forecast(lat, lon) {
 
     forecastContainer.textContent = '';
 
-    
+    forecastContainer.append(fiveDayForecastTitle);
     // Day 1 //
     forecastContainer.append(day1DateEl);
     forecastContainer.append(day1IconEl);

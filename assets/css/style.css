@@ -1,27 +1,30 @@
-h1 {
-    color: white; 
+/* body {
+    padding: 10px;
+} */
+
+h1 { 
+    color: white !important; 
     background-image: linear-gradient(to right, blue , darkblue);
-    display: flex; 
-    justify-content: center;
+
 }
 
-h2 {
-border: solid 2px black;
-}
+/* .margin {
+    margin: 5px;
+} */
 
-.flexContainer {
+/* .flexContainer {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
     flex-wrap: nowrap;
     flex-direction: column;
-}
+} */
 
-.fiveDayContainer {
+/* .fiveDayContainer {
     display: flex; 
     flex-direction: column;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: center;
     align-items: center;
-}
+} */
