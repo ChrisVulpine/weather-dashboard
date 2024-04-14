@@ -1,13 +1,17 @@
+
 body {
     background: rgb(7, 7, 37);
     color: white; 
     padding: 10px;
+    height: 60rem;
 }
 
 h1 { 
     color: white !important; 
     padding: 6px; 
-    background-image: linear-gradient(to right, rgb(6, 6, 116) , rgb(1, 1, 205));
+    border: solid 2px white; 
+    border-radius: 20px;
+    /* background-image: linear-gradient(to right, rgb(6, 6, 116) , rgb(1, 1, 205)); */
     border-radius: 15px; 
     text-align: center;
 }

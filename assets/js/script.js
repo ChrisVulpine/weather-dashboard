@@ -449,7 +449,8 @@ windEl.textContent = `Wind Speed: ${wind} MPH`;
 humidityEl.textContent = `Humidity: ${humidity}%`;
 
 currentWeather.append(cityNameEl);
-// document.body.appendChild(cityNameEl);
+currentWeather.setAttribute('class', 'whiteborderOn col-9 grid text-center uk-animation-slide-bottom');
+
 currentWeather.append(weatherIconEl);
 currentWeather.append(tempEl);
 currentWeather.append(windEl);
