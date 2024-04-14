@@ -118,6 +118,7 @@ function getTodayWeather(event) {
     console.log(`lon: ${lon}`);
     console.log(`---------------`);
     console.log(forecastURL);
+
     currentWeather.textContent = '';
 
     var cityNameEl = document.createElement('h2');
@@ -141,7 +142,7 @@ function getTodayWeather(event) {
     currentWeather.append(windEl);
     currentWeather.appendChild(humidityEl);
 
-    
+    // searchInputVal = '';
     forecast(lat, lon);
     pushInput();
   })
@@ -442,7 +443,7 @@ var windEl = document.createElement('h3');
 var humidityEl = document.createElement('h3');
 
 
-cityNameEl.textContent = `Current Weather: ${cityName} (${date})`;
+cityNameEl.textContent = `${cityName} (${date})`;
 weatherIconEl.src= `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
 tempEl.textContent = `Temp: ${temp} °F`;
 windEl.textContent = `Wind Speed: ${wind} MPH`;
@@ -458,6 +459,7 @@ currentWeather.appendChild(humidityEl);
 
 
 forecast(lat, lon);
+pushInput();
 })
 .catch(error => {
 console.error('ERROR OH NO!', error);
