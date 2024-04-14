@@ -12,44 +12,57 @@
 </head>
 <body>
 
-    <h1>Weather Dashboard ☀️</h1>
+    <h1> 🌧️ Weather Dashboard ☀️</h1>
 
 <!-- Entire body container -->
 <div class="container-fluid">
     <!-- Form, HistoryBtns + Current Weather Container -->
-    <div class="row justify-content-md-center">
+    <div class="row">
         <!-- Entire body container -->
-        <div class="col-3">
+        <div class="col-3 ">
             <h3>Search for a City: </h3>
             <!-- Entire body container -->
             <div>
                 <form id="search-form">
                     <input id="search-input" type="text" placeholder="Search for your city">
-                    <button class="btn btn-primary">Search</button>
+                    <button class="btn btn-warning">Search</button>
             </div>
-                <h3>History:</h3>
-            <div id="button-container" class="uk-animation-slide-left d-grid gap-2"></div>
+            <hr>
+                <!-- <h3>History:</h3> -->
+                <div class="uk-inline">
+                    <button class="btn btn-outline-primary" type="button">History</button>
+                    <div uk-dropdown="animation: slide-top; animate-out: true; duration: 700" id="button-container">
+                        <ul class="uk-nav uk-width-small uk-dropdown-nav>
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li class="uk-nav-header">Header</li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </div>
+            <!-- <div id="button-container" class="uk-animation-slide-left d-grid gap-2"></div> -->
         </div>
-        <div id="currentWeather" class="col-9"></div>
+        <div id="currentWeather"></div>
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid lowerBody">
     <!-- Entire body container -->
     <div class="row">
         <!-- Entire body container -->
-        <div class="col-3"></div>
-        <div class="col-9">
+        <!-- <div class="col-3"></div>
+        <div class="col-9"> -->
             <!-- Entire body container -->
-            <div>
-                <div id="fiveDayForecast" class="fiveDayContainer">
-                    <div id="day1Card" class="day1Card"></div>
+                <div id="fiveDayForecast" class="fiveDayContainer uk-column-1-5">
+                    <div id="day1Card"></div>
                     <div id="day2Card"></div>
                     <div id="day3Card"></div>
                     <div id="day4Card"></div>
                     <div id="day5Card"></div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

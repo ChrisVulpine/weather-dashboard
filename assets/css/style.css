@@ -1,12 +1,45 @@
-/* body {
+body {
+    background: rgb(7, 7, 37);
+    color: white;
+    height: 100vh; 
     padding: 10px;
-} */
+}
 
 h1 { 
     color: white !important; 
-    background-image: linear-gradient(to right, blue , darkblue);
+    padding: 6px; 
+    background-image: linear-gradient(to right, rgb(6, 6, 116) , rgb(1, 1, 205));
+    border-radius: 15px; 
+    text-align: center;
+}
+
+h2 { 
+    color: white !important; 
+}
+
+h3 { 
+    color: white !important; 
+}
+.lowerBody {
+    padding: 20px;
+}
+
+.whiteborderOn {
+    border: solid 2px white; 
+    background: rgba(104, 104, 177, 0.18);
+    width: 50%;
+    border-radius: 20px;
+    padding-top: 5px;
 
 }
+
+.fiveDayStyle {
+    border: dashed 3px white; 
+    background: rgba(104, 104, 177, 0.18);
+    border-radius: 20px;
+    padding: 5px;
+}
+
 
 /* .margin {
     margin: 5px;
