@@ -7,6 +7,7 @@ var searchFormEl = document.querySelector('#search-form');
 var currentWeather = document.querySelector('#currentWeather');
 var forecastContainer = document.querySelector('#fiveDayForecast');
 var historyBtnContainer = document.getElementById('button-container');
+var clearHistoryBtn = document.getElementById('clearHistorybtn');
 
 var lastSearchedCity = '';
 
@@ -25,6 +26,14 @@ var day5Card = document.querySelector('#day5Card');
 // Add timezone plugins to day.js
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
+
+
+function clearLocalStorage() {
+  localStorage.clear();
+  var historyBtnContainer = document.getElementById('button-container');
+  historyBtnContainer.innerHTML = ''
+  location.reload();
+}
 
 
 
@@ -66,10 +75,11 @@ function getTodayWeather(event) {
 
   if (!searchInputVal) {
     console.error('You need a search input value!');
+
     Swal.fire({
-      title: 'You need to input a city!',
-      icon: 'warning',
-      confirmButtonText: `Thanks! I'll try again.`
+    title: 'You need to input a city!',
+    icon: 'warning',
+    confirmButtonText: `Thanks! I'll try again.`
     })
     return;
   }
@@ -121,7 +131,7 @@ function getTodayWeather(event) {
 
     currentWeather.textContent = '';
 
-    var cityNameEl = document.createElement('h2');
+    var cityNameEl = document.createElement('h1');
     var weatherIconEl = document.createElement('img');
     var tempEl = document.createElement('h3');
     var windEl = document.createElement('h3');
@@ -436,7 +446,7 @@ function displayHistoryBtn(search) {
 
     
 
-var cityNameEl = document.createElement('h2');
+var cityNameEl = document.createElement('h1');
 var weatherIconEl = document.createElement('img');
 var tempEl = document.createElement('h3');
 var windEl = document.createElement('h3');
@@ -480,6 +490,7 @@ console.error('ERROR OH NO!', error);
 
 pullInput()
 searchFormEl.addEventListener('submit', getTodayWeather);
+clearHistoryBtn.addEventListener('click', clearLocalStorage);
 historyBtnContainer.addEventListener('click', historyBtnClick);
 
 

@@ -2,6 +2,7 @@ body {
     /* background: rgb(7, 7, 37); */
     background: url('/assets/img/sunset.png') no-repeat;
     background-size: 100%;
+    background-repeat: repeat;
     min-height: 975px;
     width: 100vw;
     height: 100vh;
@@ -17,8 +18,9 @@ h1 {
     text-align: center;
 }
 
-h2 { 
-    color: white !important; 
+hr { 
+    border-width: 3px !important;
+    border-radius: 20px;
 }
 
 h3 { 
@@ -35,11 +37,11 @@ h3 {
 } */
 
 .whiteborderOn {
-    border: solid 5px white; 
+    border: solid 7px white; 
     /* background: rgba(104, 104, 177, 0.18); */
-    background-color: rgba(255, 255, 255, .15);  
-    backdrop-filter: blur(10px);
-    width: 50%;
+    background-color: rgba(21, 12, 57, 0.195);   
+    backdrop-filter: blur(7px);
+    width: 73.7%;
     /* border-radius: 20px; */
     padding-top: 5px;
     padding: 7px; 
@@ -50,8 +52,8 @@ h3 {
 .fiveDayStyle {
     border: dashed 3px white; 
     /* background: rgba(104, 104, 177, 0.18); */
-    background-color: rgba(255, 255, 255, .15);  
- backdrop-filter: blur(5px);
+    background-color: rgba(21, 12, 57, 0.195);  
+ backdrop-filter: blur(10px);
     /* border-radius: 20px; */
     padding: 5px;
     box-shadow: 3px 12px 10px rgba(0, 0, 0, 0.325);
