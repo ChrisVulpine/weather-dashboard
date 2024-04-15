@@ -1,5 +1,6 @@
 body {
-    background: url('/assets/img/sunset.png') no-repeat;
+    /* background: url('/assets/img/sunset.png'); */
+    background: url("../img/sunset.png");
     background-size: 100%;
     background-repeat: repeat;
     min-height: 975px;

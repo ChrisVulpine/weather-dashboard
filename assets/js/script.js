@@ -144,7 +144,6 @@ function pushInput() {
     if (!searchHistory.includes (lowerCaseInputVal)) {
         searchHistory.push(lowerCaseInputVal);
         localStorage.setItem('input', JSON.stringify(searchHistory));
-        console.log(searchHistory);
       } else {
         console.log("Already Searched that city!");
       }
