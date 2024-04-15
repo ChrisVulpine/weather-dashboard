@@ -10,26 +10,25 @@
     <script src="./assets/js/uikit.min.js"></script>
     <script src="./assets/js/uikit-icons.min.js"></script>
 </head>
+
 <body>
 
     <h1>Weather Dashboard</h1>
 
-<!-- Entire body container -->
 <div class="container-fluid">
-    <!-- Form, HistoryBtns + Current Weather Container -->
     <div class="row">
-        <!-- Entire body container -->
         <div class="col-3 formBackground ">
             <h3>Search for a City: </h3>
-            <!-- Entire body container -->
             <div>
                 <form id="search-form">
                     <input id="search-input" type="text" placeholder="London"> 
                     <button class="btn btn-warning">Search</button>
             </div>
+
             <hr>
+
                 <div class="uk-inline">
-                        <button class="btn btn-primary" type="button">History</button>
+                        <button class="btn btn-primary" type="button">History<span uk-icon="triangle-down"></span></button>
                     <div uk-dropdown="animation: slide-top; animate-out: true; duration: 700" id="button-container">
                         <ul class="uk-nav uk-width-small uk-dropdown-nav>
                             <li class="uk-active"><a href="#">Active</a></li>
@@ -49,10 +48,7 @@
 </div>
 
 <div class="container-fluid lowerBody">
-    <!-- Entire body container -->
     <div class="row">
-        <!-- Entire body container -->
-            <!-- Entire body container -->
                 <div id="fiveDayForecast" class="fiveDayContainer uk-column-1-5">
                     <div id="day1Card"></div>
                     <div id="day2Card"></div>
@@ -63,8 +59,6 @@
         </div>
     </div>
 </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <script
