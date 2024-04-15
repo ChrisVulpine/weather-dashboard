@@ -11,6 +11,7 @@ var searchHistory = [];
 var queryString;
 var forecastURL; 
 
+//five day forecast card elements //
 var day1Card = document.querySelector('#day1Card');
 var day2Card = document.querySelector('#day2Card');
 var day3Card = document.querySelector('#day3Card');
