@@ -76,12 +76,19 @@ function getTodayWeather(event) {
   }
 
   lastSearchedCity = searchInputVal
-  var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + searchInputVal + `&appid=${APIKey}&units=imperial`;
+  var queryString = `https://api.openweathermap.org/data/2.5/weather?q=` + searchInputVal + `&appid=${APIKey}&units=imperial`;
 
   // Fetch Request for city weather data //
   fetch(queryString)
   .then(response => {
     if (!response.ok) {
+      //SweetAlert2 pop up //
+      Swal.fire({
+        title: 'No Information Found!',
+        icon: 'warning',
+        confirmButtonText: `Thanks! I'll try again.`
+        })
+        return;
       throw new Error('City Not Found!'); 
     }
     return response.json();
@@ -345,7 +352,7 @@ function historyBtnClick(event) {
 
 //---------------------------------Display Weather from History Button Click Function-----------------------------------------//
 function displayHistoryBtn(search) {
-  var queryString = `http://api.openweathermap.org/data/2.5/weather?q=` + search + `&appid=${APIKey}&units=imperial`;
+  var queryString = `https://api.openweathermap.org/data/2.5/weather?q=` + search + `&appid=${APIKey}&units=imperial`;
 
   fetch(queryString)
   .then(response => {
