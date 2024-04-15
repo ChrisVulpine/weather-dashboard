@@ -402,7 +402,7 @@ function displayHistoryBtn(search) {
 })
 
 .catch(error => {
-console.error('ERROR OH NO!', error);
+console.error('ERROR!', error);
 });
 };
 
