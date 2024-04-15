@@ -20,6 +20,13 @@ hr {
     border-radius: 20px;
 }
 
+#happySun {
+    height: 225px;
+    width: 300px; 
+    padding-top: 20px; 
+    padding-left: 100px;
+}
+
 h3 { 
     color: white !important; 
 }
